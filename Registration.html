@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="registation.css">
+    <script>
+        function validateForm() {
+            var firstname = document.getElementById('firstname').value;
+            var lastname = document.getElementById('lastname').value;
+            var email = document.getElementById('email').value; // Corrected the ID here
+            var password = document.getElementById('password').value;
+            var repassword = document.getElementById('repassword').value;
+            var error = document.getElementById('error');
+            var valid = true;
+
+            if (firstname === '' || lastname === '' || email === '' || password === '' || repassword === '') {
+                error.textContent = 'All fields are required.';
+                valid = false;
+            } else if (password !== repassword) {
+                error.textContent = 'Passwords do not match.';
+                valid = false;
+            } else {
+                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    error.textContent = 'Please enter a valid email address.';
+                    valid = false;
+                }
+            }
+
+            return valid;
+        }
+    </script>
+</head>
+<body>
+    <div id="header">
+        <div id="logo">Your Logo</div>
+        <div id="up">
+            <a href="Login"></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form method="post" action="connect.php" onsubmit="return validateForm()">
+            <div class="form-group">
+                <div class="input-group">
+                    <label for="firstname">First Name:</label>
+                    <input type="text" id="firstname" name="firstname" required>
+                </div>
+                <div class="input-group">
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" id="lastname" name="lastname" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="repassword">Re-enter Password:</label>
+                    <input type="password" id="repassword" name="repassword" required>
+                </div>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <p>Already have an account? <a href="./login.html">Login here</a></p>
+    </div>
+
+    <script src="your_script.js"></script>
+</body>
+</html>
